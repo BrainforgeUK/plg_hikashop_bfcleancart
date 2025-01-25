@@ -23,6 +23,19 @@
         <fields name="params" >
             <fieldset name="basic" >
                 <field
+                        name="cleancartoncompletion"
+                        type="radio"
+                        label="COM_BFCLEANCART_CLEANCARTONCOMPLETION_LABEL"
+                        class="btn-group btn-group-yesno"
+                        filter="intval"
+                        size="1"
+                        default="0"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
                     name="completedorderstatii"
                     type="sql"
                     label="COM_BFCLEANCART_COMPLETEDORDERSTATUSES_LABEL"
@@ -33,7 +46,52 @@
                     key_field="orderstatus_namekey"
                     value_field="orderstatus_name"
                     layout="joomla.form.field.list-fancy-select"
-            />
+                    showon="cleancartoncompletion:1"
+                    />
+
+                <field
+                    name="cleancart"
+                    type="radio"
+                    label="COM_BFCLEANCART_CLEANCART_LABEL"
+                    description="COM_BFCLEANCART_CLEANCART_DESC"
+                    class="btn-group btn-group-yesno"
+                    filter="intval"
+                    size="1"
+                    default="0"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                    name="checkforrobot"
+                    type="radio"
+                    label="COM_BFCLEANCART_CHECKFORROBOT_LABEL"
+                    description="COM_BFCLEANCART_CHECKFORROBOT_DESC"
+                    class="btn-group btn-group-yesno"
+                    filter="intval"
+                    size="1"
+                    default="0"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                    name="robotips"
+                    type="textarea"
+                    label="COM_BFCLEANCART_ROBOTIPS_LABEL"
+                    description="COM_BFCLEANCART_ROBOTIPS_DESC"
+                    showon="checkforrobot:1"
+                    />
+
+                <field
+                    name="useragents"
+                    type="textarea"
+                    label="COM_BFCLEANCART_USERAGENTS_LABEL"
+                    description="COM_BFCLEANCART_USERAGENTS_DESC"
+                    showon="checkforrobot:1"
+                />
             </fieldset>
         </fields>
     </config>
