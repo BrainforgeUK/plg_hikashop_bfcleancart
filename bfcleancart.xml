@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="plugin" version="3.5" method="upgrade" group="hikashop">
-	<name>PLG_HIKASHOP_BFCLEANCART</name>
-	<creationDate>December 2020</creationDate>
-	<version>1.0.0</version>
-	<author>Jonathan Brain</author>
-	<authorEmail>brainforge.uk@btinternet.com</authorEmail>
-	<authorUrl>https://www.brainforge.co.uk</authorUrl>
-	<copyright>Copyright (C) 2020 Jonathan Brain - All rights reserved.
-	</copyright>
-	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<description>PLG_HIKASHOP_BFCLEANCART_XML_DESCRIPTION</description>
+<extension type="plugin" version="4.3" method="upgrade" group="hikashop">
+    <name>PLG_HIKASHOP_BFCLEANCART</name>
+    <creationDate>January 2025</creationDate>
+    <version>2.0.0</version>
+    <author>Jonathan Brain</author>
+    <authorEmail>brainforge@btinternet.com</authorEmail>
+    <authorUrl>https://www.brainforge.co.uk</authorUrl>
+    <copyright>Copyright (C) 2020-2025 Jonathan Brain. All rights reserved.</copyright>
+    <license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPLv3</license>
+    <description>PLG_HIKASHOP_BFCLEANCART_XML_DESCRIPTION</description>
 
-	<files>
-		<filename plugin="bfcleancart">bfcleancart.php</filename>
-		<folder>language</folder>
-	</files>
+    <namespace path="src">Brainforgeuk\Plugin\Hikashop\BfCleanCart</namespace>
 
-	<config>
-		<fields name="params"
-		>
-			<fieldset
-					name="basic"
-			>
-				<field
-						name="completedorderstatii"
-						type="sql"
-						label="COM_BFCLEANCART_COMPLETEDORDERSTATUSES_LABEL"
-						description="COM_BFCLEANCART_COMPLETEDORDERSTATUSES_DESC"
-						required="false"
-						multiple="true"
-						query="SELECT orderstatus_namekey, orderstatus_name FROM #__hikashop_orderstatus WHERE orderstatus_published = 1 ORDER BY orderstatus_ordering"
-						key_field="orderstatus_namekey"
-						value_field="orderstatus_name"
-				/>
-			</fieldset>
-		</fields>
-	</config>
+    <files>
+        <file plugin="bfcleancart">bfcleancart.php</file>
+        <folder>language</folder>
+        <folder>services</folder>
+        <folder>src</folder>
+    </files>
 
-	<updateservers>
-		<server type="extension" priority="1" name="PLG_HIKASHOP_BFCLEANCART">
-			https://brainforge.co.uk/component/bfupdater?element=plg_hikashop_bfcleancart.xml
-		</server>
-	</updateservers>
+    <config>
+        <fields name="params" >
+            <fieldset name="basic" >
+                <field
+                    name="completedorderstatii"
+                    type="sql"
+                    label="COM_BFCLEANCART_COMPLETEDORDERSTATUSES_LABEL"
+                    description="COM_BFCLEANCART_COMPLETEDORDERSTATUSES_DESC"
+                    required="false"
+                    multiple="true"
+                    query="SELECT orderstatus_namekey, orderstatus_name FROM #__hikashop_orderstatus WHERE orderstatus_published = 1 ORDER BY orderstatus_ordering"
+                    key_field="orderstatus_namekey"
+                    value_field="orderstatus_name"
+                    layout="joomla.form.field.list-fancy-select"
+            />
+            </fieldset>
+        </fields>
+    </config>
+
+    <updateservers>
+        <server type="extension" priority="1" name="PLG_HIKASHOP_BFCLEANCART">
+            https://brainforge.co.uk/component/bfupdater?element=plg_hikashop_bfcleancart.xml
+        </server>
+    </updateservers>
 </extension>
