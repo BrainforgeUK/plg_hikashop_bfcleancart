@@ -17,7 +17,8 @@ use Joomla\Utilities\IpHelper;
 class Browser extends JoomlaBrowser
 {
 	protected $robotIPS = [
-	];
+						  ];
+	protected $checkForRobot = 0;
 
 	/*
 	 */
@@ -43,17 +44,25 @@ class Browser extends JoomlaBrowser
 	 */
 	public function isRobot()
 	{
-		if (!empty($this->robotIPS))
+		if ($this->checkForRobot & 2)
 		{
-			$ip = IpHelper::getIp();
-
-			foreach($this->robotIPS as $ignoredIp)
+			if (!empty($this->robotIPS))
 			{
-				if (str_starts_with($ip, $ignoredIp)) return true;
+				$ip = IpHelper::getIp();
+
+				foreach ($this->robotIPS as $ignoredIp)
+				{
+					if (str_starts_with($ip, $ignoredIp)) return true;
+				}
 			}
 		}
 
-		return parent::isRobot();
+		if ($this->checkForRobot & 1)
+		{
+			return parent::isRobot();
+		}
+
+		return false;
 	}
 
 	/*
@@ -82,5 +91,10 @@ class Browser extends JoomlaBrowser
 
 			$this->robotIPS[] = $robotIP;
 		}
+	}
+
+	public function setCheckForRobot($checkForRobot)
+	{
+		$this->checkForRobot = $checkForRobot;
 	}
 }

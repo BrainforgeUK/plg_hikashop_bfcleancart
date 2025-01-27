@@ -23,9 +23,10 @@ Trait CartTrait
 	{
 		try
 		{
-			if ($this->params->get('checkforrobot', 0))
+			$checkForRobot = $this->params->get('checkforrobot', 0);
+			if ($checkForRobot)
 			{
-				$this->isRobot();
+				$this->isRobot($checkForRobot);
 			}
 
 			if ($this->params->get('cleancart', 0))
@@ -52,11 +53,12 @@ Trait CartTrait
 
 	/*
 	 */
-	protected function isRobot($throw=true)
+	protected function isRobot($checkForRobot, $throw=true)
 	{
 		$browser = new Browser();
 		$browser->addRobotIPs($this->params->get('robotips'));
 		$browser->addUserAgents($this->params->get('useragents'));
+		$browser->setCheckForRobot($checkForRobot);
 
 		if (!$browser->isRobot()) return;
 

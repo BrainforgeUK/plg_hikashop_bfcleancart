@@ -68,30 +68,31 @@
                     type="radio"
                     label="COM_BFCLEANCART_CHECKFORROBOT_LABEL"
                     description="COM_BFCLEANCART_CHECKFORROBOT_DESC"
-                    class="btn-group btn-group-yesno"
-                    filter="intval"
-                    size="1"
-                    default="0"
+                        filter="intval"
+                        size="1"
+                        default="0"
                 >
                     <option value="0">JNO</option>
-                    <option value="1">JYES</option>
+                    <option value="1">COM_BFCLEANCART_CHECKFORROBOT_USERAGENT_OPTION</option>
+                    <option value="2">COM_BFCLEANCART_CHECKFORROBOT_IP_OPTION</option>
+                    <option value="3">COM_BFCLEANCART_CHECKFORROBOT_BOTH_OPTION</option>
                 </field>
+
+                <field
+                        name="useragents"
+                        type="textarea"
+                        label="COM_BFCLEANCART_USERAGENTS_LABEL"
+                        description="COM_BFCLEANCART_USERAGENTS_DESC"
+                        showon="checkforrobot:1[OR]checkforrobot:3"
+                />
 
                 <field
                     name="robotips"
                     type="textarea"
                     label="COM_BFCLEANCART_ROBOTIPS_LABEL"
                     description="COM_BFCLEANCART_ROBOTIPS_DESC"
-                    showon="checkforrobot:1"
+                    showon="checkforrobot:2[OR]checkforrobot:3"
                     />
-
-                <field
-                    name="useragents"
-                    type="textarea"
-                    label="COM_BFCLEANCART_USERAGENTS_LABEL"
-                    description="COM_BFCLEANCART_USERAGENTS_DESC"
-                    showon="checkforrobot:1"
-                />
             </fieldset>
         </fields>
     </config>
