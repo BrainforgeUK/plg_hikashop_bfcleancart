@@ -55,14 +55,17 @@ Trait CartTrait
 	 */
 	protected function isRobot($checkForRobot, $throw=true)
 	{
+		$user = $this->app->getIdentity();
+		if ($user->id) return false;
+
 		$browser = new Browser();
 		$browser->addRobotIPs($this->params->get('robotips'));
 		$browser->addUserAgents($this->params->get('useragents'));
 		$browser->setCheckForRobot($checkForRobot);
 
-		if (!$browser->isRobot()) return;
+		if (!$browser->isRobot()) return false;
 
-		if (!$throw) return false;
+		if (!$throw) return true;
 
 		throw new \Exception(Text::_('PLG_HIKASHOP_BFCLEANCART_ISROBOT'));
 	}
