@@ -69,7 +69,7 @@ class Browser extends JoomlaBrowser
 	 */
 	public function addUserAgents($userAgents)
 	{
-		foreach(preg_split('/\n+', $userAgents) as $userAgent)
+		foreach(preg_split('/\n+/', $userAgents ?? '') as $userAgent)
 		{
 			$userAgent = trim($userAgent);
 			if (empty($userAgent)) continue;
@@ -83,7 +83,7 @@ class Browser extends JoomlaBrowser
 	 */
 	public function addRobotIPs($robotIPs)
 	{
-		foreach(preg_split('/\n+', $robotIPs) as $robotIP)
+		foreach(preg_split('/\n+/', $robotIPs ?? '') as $robotIP)
 		{
 			$robotIP = trim($robotIP);
 			if (empty($robotIP)) continue;
